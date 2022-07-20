@@ -1,7 +1,6 @@
 package com.example.roman;
 
 import com.example.roman.exceptions.OutOfScopeException;
-import org.junit.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
