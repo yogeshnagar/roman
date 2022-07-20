@@ -1,5 +1,6 @@
 package com.example.roman;
 
+import org.junit.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -46,7 +47,14 @@ public class RomanConversionTest {
     @ValueSource(strings = {"", "INVALID", "MDLXVII", " ", "null", "!@£$£"})
     public void testIntegerToRoman_ConversionFailure_InvalidValues(String testValue) {
         String result = null;
-        fail("Method should throw an error in case of invalid value.");
+        fail("Test should throw an error in case of invalid value.");
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {3001, 5000})
+    public void testIntegerToRoman_ConversionFailure_OutOfScopeValues(int testValue) {
+        String result = null;
+        fail("Test should throw an error in case of value greater than 3000.");
     }
 
 }
