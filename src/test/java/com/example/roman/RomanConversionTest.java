@@ -21,7 +21,7 @@ public class RomanConversionTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"10=X", "14=XIV", "15=XV", "19=IXX", "20=XX"})
+    @ValueSource(strings = {"10=X", "14=XIV", "15=XV", "19=XIX", "20=XX"})
     public void testIntegerToRoman_ConversionOfTwoDigits(String testGroup) {
         String[] mappedKeyValue = testGroup.split(EQUALS);
         String result = romanConversion.toRoman(Integer.parseInt(mappedKeyValue[0]));
