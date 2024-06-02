@@ -1,4 +1,5 @@
 name: Get Selected Environments
+id: get-envs-action
 description: Get Selected Environments
 icon: "check"
 color: "black"
@@ -14,9 +15,9 @@ runs:
     - name: Parse input
       id: parse-input
       shell: bash
-      run: |        
+      run: |
         inputs=($INPUTS)
-      
+        
         declare -A inputsMap
         for i in ${inputs[@]}; do
           if ! [[ ${i} ]] ; then

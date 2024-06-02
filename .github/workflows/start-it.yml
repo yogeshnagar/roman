@@ -21,4 +21,4 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
       - name: list-envs
-        uses: ./.github/workflows/actions/get-envs-action.yml
+        uses: ./.github/workflows/actions/get-envs-action
