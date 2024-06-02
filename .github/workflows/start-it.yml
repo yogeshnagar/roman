@@ -31,11 +31,11 @@ jobs:
         id: step_two
         run: |
           echo "${{ env.set-environments }}"
-      - example_matrix:
-          strategy:
-            matrix:
-              version: ${{ env.set-environments }}
-          steps:
-            - uses: actions/setup-node@v4
-              with:
-                node-version: ${{ matrix.version }}
+  example_matrix:
+    strategy:
+      matrix:
+        version: ${{ env.set-environments }}
+    steps:
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.version }}
