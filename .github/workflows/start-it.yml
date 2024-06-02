@@ -23,6 +23,6 @@ jobs:
         shell: bash
         run: |
           echo "All keys:" $(echo $INPUTS | jq 'keys')
-          echo "All keys2:" $(echo $INPUTS | jq 'to_entries | map(select(.value == true))[] | (.key, .value.type)')
+          echo "All keys2:" $(echo $INPUTS | jq 'to_entries | map(select(.value == true))[] | (.key, .value)')
         env:
           INPUTS: ${{ toJSON(inputs) }}
