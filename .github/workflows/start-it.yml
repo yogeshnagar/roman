@@ -37,7 +37,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        version: ${{ jobs.set-environments.outputs.envs }}
+        version: ${{ jobs.setup-environments.outputs.envs }}
     steps:
       - uses: actions/setup-node@v4
         with:
