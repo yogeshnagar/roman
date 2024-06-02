@@ -22,7 +22,7 @@ runs:
         declare -i count=0
         for i in ${inputs[@]}; do
           inputsMap["$count"]='test1'
-            count=$((count+1))
+          count=$((count+1))
         done
                 
         echo "${{join(env.inputsMap, ',')}}" >> "$GITHUB_OUTPUT"
