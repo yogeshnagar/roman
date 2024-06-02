@@ -24,6 +24,7 @@ runs:
         declare -i count=0
         for i in ${jsonInput[@]}; do
           if ! [[ ${jsonInput[i]} ]] ; then
+            echo jsonInput["$i"]
             inputsMap["$count"]=jsonInput["$i"]
             count=$((count+1))
           fi
