@@ -18,7 +18,8 @@ runs:
       run: |
         inputs=($INPUTS)
         
-        declare inputsdata=${{fromJSON(inputs.data)}} 
+        inputsdata=( $(echo $inputs | sed -e 's/\[//g' -e 's/\]//g' -e 's/\,/ /g') );
+        
         declare -A inputsMap
         declare -i count=0
         for i in ${inputsdata[@]}; do
