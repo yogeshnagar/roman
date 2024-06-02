@@ -23,6 +23,6 @@ jobs:
         shell: bash
         run: |
           declare -A envArray=$(echo $INPUTS | jq 'to_entries | map(select(.value == true))[] | (.key)')
-          echo "${{join(env.envArray, ',')}}" >> "$GITHUB_OUTPUT"
+          echo "${{join(envArray, ',')}}" >> "$GITHUB_OUTPUT"
         env:
           INPUTS: ${{ toJSON(inputs) }}
