@@ -17,9 +17,8 @@ runs:
       shell: bash
       run: |
         inputs=($INPUTS)
-                
         
                 
-        echo "${{inputs.data}}" >> "$GITHUB_OUTPUT"
+        echo "${{join(inputs.data, ',')}}" >> "$GITHUB_OUTPUT"
       env:
         INPUTS: ${{ inputs.data }}
