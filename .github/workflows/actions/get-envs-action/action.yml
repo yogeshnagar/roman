@@ -19,8 +19,12 @@ runs:
         inputs=($INPUTS)
         
         declare -A inputsMap
+        declare -i count=0
         for i in ${inputs[@]}; do
-          inputsMap["$i"]=1
+          if ! [[ ${inputs[i]} ]] ; then
+            inputsMap["$count"]=inputs[i]
+            count=$((count+1))
+          fi
         done
                 
         echo "${{join(env.inputsMap, ',')}}" >> "$GITHUB_OUTPUT"
