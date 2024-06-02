@@ -19,4 +19,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: list-envs
-        uses: actions/get-envs-action
+        uses: ./.github/workflows/get-envs-action
