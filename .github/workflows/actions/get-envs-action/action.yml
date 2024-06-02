@@ -15,12 +15,14 @@ runs:
     - name: Parse input
       id: parse-input
       shell: bash
-      run: |                
+      run: |
+        inputs=($INPUTS)
+                
         declare -A inputsMap
         declare -i count=0
-        for i in ${{env.INPUTS[@]}}; do
-          if ! [[ ${{env.INPUTS[i]}} ]] ; then
-            inputsMap["$count"]=env.INPUTS["$i"]
+        for i in ${inputs[@]}; do
+          if ! [[ ${inputs[i]} ]] ; then
+            inputsMap["$count"]=inputs["$i"]
             count=$((count+1))
           fi
         done
