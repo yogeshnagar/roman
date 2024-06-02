@@ -20,9 +20,7 @@ runs:
         
         declare -A inputsMap
         for i in ${inputs[@]}; do
-          if ! [[ ${i} ]] ; then
-            inputsMap["$i"]=1
-          fi
+          inputsMap["$i"]=1
         done
                 
         echo "${{join(env.inputsMap, ',')}}" >> "$GITHUB_OUTPUT"
