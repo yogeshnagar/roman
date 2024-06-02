@@ -25,6 +25,8 @@ runs:
           fi
         done
         
-        echo "${{join($inputsMap, ',')}}" >> "$GITHUB_OUTPUT"
+        selectedInputs=($inputsMap)
+        
+        echo "${{join(selectedInputs, ',')}}" >> "$GITHUB_OUTPUT"
       env:
         INPUTS: ${{ inputs.inputs }}
