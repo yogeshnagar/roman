@@ -20,6 +20,6 @@ runs:
                 
         
                 
-        echo "${{fromJSON(inputs.data)}}" >> "$GITHUB_OUTPUT"
+        echo "${{inputs.data}}" >> "$GITHUB_OUTPUT"
       env:
         INPUTS: ${{ inputs.data }}
