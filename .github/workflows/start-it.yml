@@ -22,12 +22,8 @@ jobs:
         id: set-environments
         shell: bash
         run: |
-          joinByChar() {
-            local IFS="$1"
-            shift
-            echo "$*"
-          }
           declare -A envArray=$(echo $INPUTS | jq 'to_entries | map(select(.value == true))[] | (.key)')
-          echo '$joinByChar , "${envArray[@]}"' >> $GITHUB_OUTPUT
+          IFS=$',';
+          echo "${envArray[*]}" >> $GITHUB_OUTPUT
         env:
           INPUTS: ${{ toJSON(inputs) }}
