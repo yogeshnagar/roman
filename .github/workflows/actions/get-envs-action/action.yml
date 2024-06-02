@@ -29,4 +29,4 @@ runs:
                 
         echo "${{join(env.inputsMap, ',')}}" >> "$GITHUB_OUTPUT"
       env:
-        INPUTS: ${{ inputs.data }}
+        INPUTS: ${{ fromJSON(inputs.data) }}
