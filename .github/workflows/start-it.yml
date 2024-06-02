@@ -22,7 +22,7 @@ jobs:
         id: set-environments
         shell: bash
         run: |
-          echo "All keys:" $(echo $INPUTS | jq 'keys')
-          echo $(echo $INPUTS | jq 'to_entries | map(select(.value == true))[] | (.key)') >> $GITHUB_OUTPUT
+          declare -A envArray=$(echo $INPUTS | jq 'to_entries | map(select(.value == true))[] | (.key)')
+          echo ${envArray}
         env:
           INPUTS: ${{ toJSON(inputs) }}
