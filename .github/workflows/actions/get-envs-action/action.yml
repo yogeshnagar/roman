@@ -18,9 +18,9 @@ runs:
       run: |                
         declare -A inputsMap
         declare -i count=0
-        for i in ${env.inputs[@]}; do
-          if ! [[ ${env.inputs[i]} ]] ; then
-            inputsMap["$count"]=env.inputs["$i"]
+        for i in ${env.INPUTS[@]}; do
+          if ! [[ ${env.INPUTS[i]} ]] ; then
+            inputsMap["$count"]=env.INPUTS["$i"]
             count=$((count+1))
           fi
         done
