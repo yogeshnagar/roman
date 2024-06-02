@@ -18,7 +18,7 @@ jobs:
   setup-environments:
     runs-on: ubuntu-latest
     outputs:
-      envs: ${{ env.set-environments }}
+      envs: ${{ steps.step_two.outputs.envs }}
     steps:
       - name: Set Environments
         id: set-environments
@@ -31,13 +31,16 @@ jobs:
           INPUTS: ${{ toJSON(inputs) }}
       - name: Use the value
         id: step_two
+        outputs:
+          envs: ${{ env.set-environments }}
         run: |
           echo "${{ env.set-environments }}"
   example_matrix:
     runs-on: ubuntu-latest
+    needs: [setup-environments]
     strategy:
       matrix:
-        version: ${{ jobs.setup-environments.outputs.envs }}
+        version: ${{ needs.setup-environments.outputs.envs }}
     steps:
       - uses: actions/setup-node@v4
         with:
