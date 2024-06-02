@@ -16,8 +16,8 @@ runs:
       id: parse-input
       shell: bash
       run: |
-        inputs=($INPUTS)
-                        
+        inputs=( $(sed -n "/{/,/}/{s/[^:]*:[[:blank:]]*//p;}" $INPUTS ) )
+                                
         declare -A inputsMap
         declare -i count=0
         for i in ${inputs[@]}; do
