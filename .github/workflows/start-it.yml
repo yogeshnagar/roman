@@ -28,3 +28,7 @@ jobs:
           echo "set-environments=${result}" >> $GITHUB_OUTPUT
         env:
           INPUTS: ${{ toJSON(inputs) }}
+      - name: Use the value
+        id: step_two
+        run: |
+          echo "${{ env.set-environments }}"
