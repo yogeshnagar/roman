@@ -1,0 +1,21 @@
+on:
+  workflow_dispatch:
+    inputs:
+      env1:
+        description: env1
+        type: boolean
+        required: false
+      env2:
+        description: env2
+        type: boolean
+        required: false
+      env3:
+        description: env3
+        type: boolean
+        required: false
+
+jobs:
+  setup-environments:
+    runs-on: ubuntu-latest
+    steps:
+      uses: get-envs-action
