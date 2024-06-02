@@ -17,25 +17,17 @@ runs:
       shell: bash
       run: |
         inputs=($INPUTS)
-        
-        declare -A myarray
-        while IFS="=" read -r key value
-        do
-          myarray[$key]="$value"
-        done < <(jq -r 'to_entries|map("(.key)=(.value)")|.[]' file)
-        
-        declare -A jsonInput=${{ fromJSON(inputs.data) }}
-                
+                        
         declare -A inputsMap
         declare -i count=0
-        for i in ${jsonInput[@]}; do
-          if ! [[ ${jsonInput[i]} ]] ; then
+        for i in ${inputs[@]}; do
+          if ! [[ ${inputs[i]} ]] ; then
             echo "$i"
-            inputsMap["$count"]=jsonInput["$i"]
+            inputsMap["$count"]=inputs["$i"]
             count=$((count+1))
           fi
         done
                 
         echo "${{join(env.inputsMap, ',')}}" >> "$GITHUB_OUTPUT"
       env:
-        INPUTS: ${{ inputs.data }}
+        INPUTS: ${{ fromJSON(inputs.data) }}
