@@ -18,11 +18,12 @@ runs:
       run: |
         inputs=($INPUTS)
         
+        inputsdata=${{fromJSON(inputs)}} 
         declare -A inputsMap
         declare -i count=0
-        for i in ${inputs[@]}; do
-          if ! [[ ${inputs[i]} ]] ; then
-            inputsMap["$count"]=inputs[i]
+        for i in ${inputsdata[@]}; do
+          if ! [[ ${inputsdata[i]} ]] ; then
+            inputsMap["$count"]=inputsdata[i]
             count=$((count+1))
           fi
         done
