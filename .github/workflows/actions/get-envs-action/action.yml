@@ -16,15 +16,13 @@ runs:
       id: parse-input
       shell: bash
       run: |
-        inputs=($INPUTS)
-        
-        inputsdata=( $(echo $inputs | sed -e 's/\[//g' -e 's/\]//g' -e 's/\,/ /g') );
-        
+        inputs=( $(echo $INPUTS | sed -e 's/\[//g' -e 's/\]//g' -e 's/\,/ /g') )
+                
         declare -A inputsMap
         declare -i count=0
-        for i in ${inputsdata[@]}; do
-          if ! [[ ${inputsdata[i]} ]] ; then
-            inputsMap["$count"]=inputsdata["$i"]
+        for i in ${inputs[@]}; do
+          if ! [[ ${inputs[i]} ]] ; then
+            inputsMap["$count"]=inputs["$i"]
             count=$((count+1))
           fi
         done
