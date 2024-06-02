@@ -15,14 +15,12 @@ runs:
     - name: Parse input
       id: parse-input
       shell: bash
-      run: |
-        inputs=( $(echo $INPUTS | sed -e 's/\[//g' -e 's/\]//g' -e 's/\,/ /g') )
-                
+      run: |                
         declare -A inputsMap
         declare -i count=0
-        for i in ${inputs[@]}; do
-          if ! [[ ${inputs[i]} ]] ; then
-            inputsMap["$count"]=inputs["$i"]
+        for i in ${env.inputs[@]}; do
+          if ! [[ ${env.inputs[i]} ]] ; then
+            inputsMap["$count"]=env.inputs["$i"]
             count=$((count+1))
           fi
         done
