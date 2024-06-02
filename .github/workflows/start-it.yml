@@ -24,7 +24,7 @@ jobs:
         run: |
           function join { local IFS="$1"; shift; echo "$*" | tr -d '"'; }
           declare -A envArray=$(echo $INPUTS | jq 'to_entries | map(select(.value == true))[] | (.key)')
-          result=$(join , ${envArray[@]})
-          echo "result=$result" >> $GITHUB_OUTPUT
+          declare -A result=$(join , ${envArray[@]})
+          echo "result=$result" >> "$GITHUB_OUTPUT"
         env:
           INPUTS: ${{ toJSON(inputs) }}
