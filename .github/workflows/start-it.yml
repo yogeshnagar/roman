@@ -24,4 +24,4 @@ jobs:
         run: |
           echo "All keys:" $(echo $INPUTS | jq 'keys')
         env:
-          INPUTS: ${{ inputs }}
+          INPUTS: ${{ toJSON(inputs) }}
