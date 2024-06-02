@@ -23,7 +23,8 @@ jobs:
         shell: bash
         run: |
           declare -A envArray=$(echo $INPUTS | jq 'to_entries | map(select(.value == true))[] | (.key)')
-          arrayString=( IFS=$'\n' echo "${envArray[*]}" )
+          IFS=$','
+          declare -A arrayString=(echo "${envArray[*]}")
           echo "${arrayString}" >> $GITHUB_OUTPUT
         env:
           INPUTS: ${{ toJSON(inputs) }}
