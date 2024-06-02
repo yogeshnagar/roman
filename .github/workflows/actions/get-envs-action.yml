@@ -2,6 +2,8 @@ name: Get Selected Environments
 description: Get Selected Environments
 icon: "check"
 color: "black"
+on:
+  workflow-call:
 inputs:
   inputs:
     description: inputs for check input
