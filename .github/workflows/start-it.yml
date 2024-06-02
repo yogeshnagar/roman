@@ -22,12 +22,10 @@ jobs:
         id: set-environments
         shell: bash
         run: |
-          inputs=($INPUTS)
-
           declare -A inputsMap
           declare -i count=0
-          for i in ${inputs[@]}; do
-            if ! [[ ${inputs[i]} ]] ; then
+          for i in ${{inputs[@]}}; do
+            if ! [[ ${{inputs[i]}} ]] ; then
               echo "$i"
               inputsMap["$count"]=inputs["$i"]
               count=$((count+1))
@@ -35,5 +33,3 @@ jobs:
           done
 
           echo "${{join(env.inputsMap, ',')}}" >> "$GITHUB_OUTPUT"
-        env:
-          INPUTS: ${{ inputs }}
