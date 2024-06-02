@@ -12,11 +12,16 @@ inputs:
 runs:
   using: "composite"
   steps:
+    - name: Process Inputs
+      id: process-inputs
+      outputs:
+        processed-data: ${{ fromJSON(inputs.data) }}
     - name: Parse input
       id: parse-input
+      needs: [process-inputs]
       shell: bash
       run: |
-        inputs=(${{fromJSON(INPUTS)}})
+        inputs=($INPUTS)
         
         declare -A inputsMap
         declare -i count=0
@@ -29,4 +34,4 @@ runs:
                 
         echo "${{join(env.inputsMap, ',')}}" >> "$GITHUB_OUTPUT"
       env:
-        INPUTS: ${{ inputs.data }}
+        INPUTS: ${{ needs.process-inputs.outputs.processed-data }}
