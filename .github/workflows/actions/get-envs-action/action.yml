@@ -18,7 +18,17 @@ runs:
       run: |
         inputs=($INPUTS)
         
+        jsonInput=${{ fromJSON(inputs.data) }}
                 
-        echo "${{join(inputs.data, ',')}}" >> "$GITHUB_OUTPUT"
+        declare -A inputsMap
+        declare -i count=0
+        for i in ${jsonInput[@]}; do
+          if ! [[ ${jsonInput[i]} ]] ; then
+            inputsMap["$count"]=jsonInput["$i"]
+            count=$((count+1))
+          fi
+        done
+                
+        echo "${{join(env.inputsMap, ',')}}" >> "$GITHUB_OUTPUT"
       env:
         INPUTS: ${{ inputs.data }}
