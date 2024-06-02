@@ -18,13 +18,19 @@ runs:
       run: |
         inputs=($INPUTS)
         
+        declare -A myarray
+        while IFS="=" read -r key value
+        do
+          myarray[$key]="$value"
+        done < <(jq -r 'to_entries|map("(.key)=(.value)")|.[]' file)
+        
         declare -A jsonInput=${{ fromJSON(inputs.data) }}
                 
         declare -A inputsMap
         declare -i count=0
         for i in ${jsonInput[@]}; do
           if ! [[ ${jsonInput[i]} ]] ; then
-            echo jsonInput["$i"]
+            echo "$i"
             inputsMap["$count"]=jsonInput["$i"]
             count=$((count+1))
           fi
