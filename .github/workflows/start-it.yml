@@ -18,5 +18,5 @@ jobs:
   setup-environments:
     runs-on: ubuntu-latest
     steps:
-      - list-envs:
-          uses: get-envs-action
+      - name: list-envs
+        uses: get-envs-action
