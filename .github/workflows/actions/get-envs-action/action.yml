@@ -18,7 +18,7 @@ runs:
       run: |
         inputs=($INPUTS)
         
-        inputsdata=${{fromJSON(inputs)}} 
+        declare inputsdata=${{fromJSON(inputs)}} 
         declare -A inputsMap
         declare -i count=0
         for i in ${inputsdata[@]}; do
