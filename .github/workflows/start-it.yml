@@ -26,7 +26,7 @@ jobs:
         run: |
           function join { local IFS="$1"; shift; echo "$*" | tr -d '"'; }
           declare -A envArray=$(echo $INPUTS | jq 'to_entries | map(select(.value == true))[] | (.key)')
-          echo "set-environments=${envArray}" >> $GITHUB_OUTPUT
+          echo "set-environments=$(join , ${envArray[@]})" >> $GITHUB_OUTPUT
         env:
           INPUTS: ${{ toJSON(inputs) }}
   example_matrix:
