@@ -25,7 +25,7 @@ jobs:
         shell: bash
         run: |
           declare -A envArray=$(echo $INPUTS | jq 'to_entries | map(select(.value == true))[] | (.key))
-          declare -A envJson=$(jq -r --compact-output --null-input '$ARGS.positional' --args -- "${envArray[@]}") 
+          declare -A envJson=$(jq --compact-output --null-input '$ARGS.positional' --args -- "${envArray[@]}") 
           echo "set-environments=${envJson}" >> $GITHUB_OUTPUT
         env:
           INPUTS: ${{ toJSON(inputs) }}
