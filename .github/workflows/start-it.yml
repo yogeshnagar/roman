@@ -18,7 +18,7 @@ jobs:
   setup-environments:
     runs-on: ubuntu-latest
     outputs:
-      envs: ${{ steps.step_two.outputs.envs }}
+      envs: ${{ steps.step_two.outputs.set-environments }}
     steps:
       - name: Set Environments
         id: set-environments
