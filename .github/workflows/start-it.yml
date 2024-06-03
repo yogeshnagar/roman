@@ -35,9 +35,9 @@ jobs:
     strategy:
       matrix:
         version: ${{ fromJSON(needs.setup-environments.outputs.envs) }}
-        token: $[inputs.env1]
+        token: ${{inputs.env1}}
     steps:
       - uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.version }}
-          token: ${{matrix.token}}
+          token: ${{ matrix.token }}
