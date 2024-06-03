@@ -34,7 +34,7 @@ jobs:
     needs: [setup-environments]
     strategy:
       matrix:
-        version: ${{ needs.setup-environments.outputs.envs }}
+        version: ${{ toJSON(needs.setup-environments.outputs.envs) }}
     steps:
       - uses: actions/setup-node@v4
         with:
