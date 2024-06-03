@@ -31,8 +31,10 @@ jobs:
           INPUTS: ${{ toJSON(inputs) }}
       - name: Use the value
         id: step_two
+        outputs:
+          result: ${{ env.set-environments }}
         run: |
-          echo "${{ env.set-environments }}" >> $GITHUB_OUTPUT
+          echo "${{ env.set-environments }}"
   example_matrix:
     runs-on: ubuntu-latest
     needs: [setup-environments]
