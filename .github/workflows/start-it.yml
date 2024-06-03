@@ -32,7 +32,7 @@ jobs:
       - name: Use the value
         id: step_two
         run: |
-          echo "${{ env.set-environments }}\n" >> $GITHUB_OUTPUT
+          echo "set-environments=${{ env.set-environments }}\n" >> $GITHUB_OUTPUT
   example_matrix:
     runs-on: ubuntu-latest
     needs: [setup-environments]
