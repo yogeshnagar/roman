@@ -26,7 +26,8 @@ jobs:
         run: |
           function join { local IFS="$1"; shift; echo "$*" | tr -d '"'; }
           declare -A envArray=$(echo $INPUTS | jq 'to_entries | map(select(.value == true))[] | (.key)')
-          echo "set-environments=$(join , ${envArray[@]})" >> $GITHUB_OUTPUT
+          declare -A envJson=$(jq --compact-output --null-input '$ARGS.positional' --args -- "${envArray[@]}") 
+          echo "set-environments=$(envJson)" >> $GITHUB_OUTPUT
         env:
           INPUTS: ${{ toJSON(inputs) }}
   example_matrix:
@@ -34,7 +35,7 @@ jobs:
     needs: [setup-environments]
     strategy:
       matrix:
-        version: ${{ toJSON(needs.setup-environments.outputs.envs) }}
+        version: ${{ fromJSON(needs.setup-environments.outputs.envs) }}
     steps:
       - uses: actions/setup-node@v4
         with:
